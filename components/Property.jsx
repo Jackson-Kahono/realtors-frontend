@@ -21,13 +21,14 @@ const Property = ({property: {coverPhoto, price, rentFrequency, rooms, title, ba
                     <Text fontWeight="bold" fontSize="large">AED{millify(price)}{rentFrequency && `/${rentFrequency}`}</Text>
                     </Flex> 
                     <Box>
-                        
+                       <Avatar size="small" src={agency?.logo?.url}  /> 
                     </Box>
+                </Flex>
+                <Flex alignItems="center" padding="1" justifyContent="space-between" width="250px" color="blue.400">
+                    {rooms} <FaBed /> | {baths} <FaBath /> | {millify(area)} sqft <BsGridFill />
 
                 </Flex>
             </Box>
-
-
         </Flex>
     </Link>
 );
