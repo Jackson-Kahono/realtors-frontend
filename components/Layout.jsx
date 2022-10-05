@@ -3,6 +3,7 @@ import { Box } from "@chakra-ui/react";
 import { Children } from "react";
 
 
+
 const Layout = ({ children }) => (
     <>
     <Head>
@@ -15,7 +16,10 @@ const Layout = ({ children }) => (
         <main>
             {children}
         </main>
-
+        <footer>
+            Footer
+        </footer>
     </Box>
     </>
-)
+);
+export default Layout;
