@@ -7,9 +7,9 @@ const Banner = ({ purpose , title1, title2, desc1, desc2, buttonText, linkName, 
     <Image src={imageUrl} width={500} height={300} alt="banner" />
     <Box padding="5">
     <Text color="gray.500" fontSize="small" fontWeight="medium" >{purpose}</Text>
-    <Text fontSize="3xl" fontWeight="bold" >{title1}<br />{title2}</Text>
+    <Text fontSize="3xl" fontWeight="bold">{title1}<br />{title2}</Text>
     <Text  fontSize="large" paddingTop="3" paddingBottom="3" color="gray.700">{desc1}<br />{desc2}</Text>
-    <Button fontSize="xl" bg="blue.300" color="white">
+    <Button fontSize="xl">
       <Link href={linkName}><a>{buttonText}</a></Link>
     </Button>
     </Box>
