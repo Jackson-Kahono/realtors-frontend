@@ -1,5 +1,5 @@
 import Link from "next/link";
-import image from "next/image";
+import Image from "next/image";
 import { Box, Flex, Text, Avatar} from "@chakra-ui/react";
 import { FaBed, FaBath } from "react-icons/fa";
 import { BsGridFill } from "react-icons/bs";
@@ -12,8 +12,18 @@ const Property = ({property: {coverPhoto, price, rentFrequency, rooms, title, ba
     <Link href={`/property/${externalId}`} passHref>
         <Flex flexWrap="wrap" width="420px" padding="5" paddingTop="0" justifyContent="flex-start" cursor="pointer">
             <Box>
-                <Image src={coverPhoto ? coverPhoto.url : defaultImage} />
+                <Image src={coverPhoto ? coverPhoto.url : DefaultImage} width={400} height={260} alt="house" />
             </Box>
+            <Box w="full">
+                <Flex paddingTop="2" alignItems="center" justifyContent="space-between">
+                   <Flex alignItems="center" >
+                    <Box paddingRight="3" color="green.400">{isVerified && <GoVerified />}</Box>
+                    <Text fontWeight="bold" fontSize="large">AED{millify(price)}{rentFrequency && `/${rentFrequency}`}</Text>
+                    </Flex> 
+
+                </Flex>
+            </Box>
+
 
         </Flex>
     </Link>
