@@ -63,3 +63,9 @@ export async function getStaticProps() {
 }
 
 export default Home;
+
+///next.js has two forms of pre-rendering: static generation and Server side rendering.
+  //next.js functions for pre-rendering;
+  //getServerSideProps- fetches data on each request
+  //getStaticProps- fetches data at build time
+  //getStaticPaths-  specifies dynamic routes to pre-render pages based on data
