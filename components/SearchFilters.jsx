@@ -7,9 +7,17 @@ import { filterData, getFilterValues } from "../utils/filterData";
 
 const SearchFilters = () => {
     const [filters, setFilters] = useState(filterData);
+    const router = useRouter();
 
     const searchProperties = (filterValues) => {
+        const path = router.pathname;
+        const { query } = router;
+        const values = getFilterValues(filterValues);
 
+        values.forEach((item) => {
+            query[item.name] = item.value
+        })
+        router.push({ pathname: path, query: query })
     }
 
 return (
@@ -21,6 +29,11 @@ return (
                 width="fit-content"
                 padding="2"
                 onChange={(event) => searchProperties({[ filter.queryName ] : event.target.value})}>
+                    {filter?.items?.map((item) => (
+                        <option value={item.value} key={item.value}>{item.name}</option>
+                    )
+
+                    )}
 
                 </Select>
 
