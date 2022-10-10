@@ -20,11 +20,15 @@ This is a real estate application where a user will be able to buy or rent a hom
 * An access to the Internet
 
 ## Technologies used
-*JAVASCRIPT -which was used to make the website more interactive.
-*JSX- Makes it easier to write HTML in React.
-*REACT.JS- It's used for building interactive user interfaces and web applications quickly and efficiently with significantly less code than you would with vanilla JavaScript.
-*NEXT.JS- it is a React framework that gives you building blocks to create web applications.
-*CHAKRA UI- Makes it easier to style pages
+* JAVASCRIPT -which was used to make the website more interactive.
+
+* JSX- Makes it easier to write HTML in React.
+
+* REACT.JS- It's used for building interactive user interfaces and web applications quickly and efficiently with significantly less code than you would with vanilla JavaScript.
+
+* NEXT.JS- it is a React framework that gives you building blocks to create web applications.
+
+* CHAKRA UI- Makes it easier to style pages
 
 
 ## Known bugs
