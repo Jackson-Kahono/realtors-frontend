@@ -43,7 +43,7 @@ const Search = ({properties}) => {
                 <Text fontSize="2xl" marginTop="3">No results found</Text>
             </Flex>
         )}
-      </Box>  
+      </Box>
     )
 }
 

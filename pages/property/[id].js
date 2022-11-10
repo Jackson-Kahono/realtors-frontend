@@ -1,4 +1,4 @@
-import { Box, Flex, Spacer, Text, Avatar } from "@chakra-ui/react"
+import { Box, Flex, Spacer, Text, Avatar, Button } from "@chakra-ui/react"
 import { FaBed, FaBath } from 'react-icons/fa';
 import { BsGridFill } from 'react-icons/bs';
 import { GoVerified } from 'react-icons/go';
@@ -7,13 +7,13 @@ import { baseUrl, fetchApi } from '../../utils/fetchAPI';
 import ImageScrollbar from '../../components/ImageScrollbar';
 
 const PropertyDetails = ({ propertyDetails: { price, rentFrequency, rooms, title, baths, area, agency, isVerified, description, type, purpose, furnishingStatus, amenities, photos } }) => (
-    <Box maxWidth="1000px" margin="auto" padding="4">
-        {photos && <ImageScrollbar data ={photos} />}
+  <Box maxWidth="1000px" margin="auto" padding="4">
+    {photos && <ImageScrollbar data={photos} />}
     <Box w='full' p='6'>
       <Flex paddingTop='2' alignItems='center'>
         <Box paddingRight='3' color='green.400'>{isVerified && <GoVerified />}</Box>
         <Text fontWeight='bold' fontSize='lg'>
-          AED {price} {rentFrequency && `/${rentFrequency}`}
+          KES {price} {rentFrequency && `/${rentFrequency}`}
         </Text>
         <Spacer />
         <Avatar size='sm' src={agency?.logo?.url}></Avatar>
@@ -39,22 +39,37 @@ const PropertyDetails = ({ propertyDetails: { price, rentFrequency, rooms, title
         <Flex justifyContent='space-between' w='400px' borderBottom='1px' borderColor='gray.100' p='3' >
           <Text>Furnishing Status</Text>
           <Text fontWeight='bold'>{furnishingStatus}</Text>
+          {!purpose == 'for-sale' && (
+            <Button colorScheme='blue' size='sm' variant='outline' w='100px' marginTop='2'>
+              Buy
+            </Button>
+          )}
         </Flex>
       )}
     </Flex>
+    {purpose=='for-sale' && (
+    <Button colorScheme='blue' size='sm' variant='outline' w='100px' marginTop='2' onClick={
+      () => {
+        console.log(purpose)
+        alert('You have successfully booked this property')
+      }
+    }>
+      Buy
+    </Button>
+    )}
     <Box>
       {amenities.length && <Text fontSize='2xl' fontWeight='black' marginTop='5'>Facilites:</Text>}
-        <Flex flexWrap='wrap'>
-          {amenities?.map((item) => (
-              item?.amenities?.map((amenity) => (
-                <Text key={amenity.text} fontWeight='bold' color='blue.400' fontSize='l' p='2' bg='gray.200' m='1' borderRadius='5'>
-                  {amenity.text}
-                </Text>
-              ))
-          ))}
-        </Flex>
+      <Flex flexWrap='wrap'>
+        {amenities?.map((item) => (
+          item?.amenities?.map((amenity) => (
+            <Text key={amenity.text} fontWeight='bold' color='blue.400' fontSize='l' p='2' bg='gray.200' m='1' borderRadius='5'>
+              {amenity.text}
+            </Text>
+          ))
+        ))}
+      </Flex>
     </Box>
-    </Box>
+  </Box>
 
 );
 
@@ -62,7 +77,8 @@ export default PropertyDetails;
 
 export async function getServerSideProps({ params: { id } }) {
   const data = await fetchApi(`${baseUrl}/properties/detail?externalID=${id}`);
-  
+  console.log(data);
+
   return {
     props: {
       propertyDetails: data,
