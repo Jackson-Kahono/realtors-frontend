@@ -5,10 +5,13 @@ import { ChakraProvider } from "@chakra-ui/react";
 
 import Layout from "../components/Layout"
 
+// import { useEffect, useState } from "react";
 function MyApp({ Component, pageProps }) {
-  //loading page
 
-  
+
+
+
+
   NProgress.configure({ showSpinner: false })
 
   Router.events.on("routeChangeStart", () => {

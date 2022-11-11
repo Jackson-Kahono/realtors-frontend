@@ -11,9 +11,9 @@ export default function Login(){
                   email: e.target.email.value,
                   password: e.target.password.value
             }
-            let url = "http://localhost:3000/api/login/client"
+            let url = "http://localhost:9292/login/client"
             if(isAgent){
-                  url = "http://localhost:3000/api/login/agency"
+                  url = "http://localhost:9292/login/agencies"
             }
             fetch(url, {
                   method: 'POST',
@@ -22,11 +22,26 @@ export default function Login(){
                   },
                   body: JSON.stringify(data)
             })
-            .then(res=>res.json())
-            .then(data=>{
-                  localStorage.setItem('token', data.id)
-                  window.location.assign('/')
+            .then(res=>{
+                  if(res.status == 200){
+                        return res.json()
+                  }
+                  alert("Invalid Credentials")
+                  return null
+
             })
+            .then(data=>{
+                  if(data){
+                        if (isAgent) {
+                              localStorage.setItem('agent', true)
+
+                        }
+                        localStorage.setItem("token", data.id)
+                        window.location.href = "/"
+                  }
+
+            })
+
       }
 
       return (

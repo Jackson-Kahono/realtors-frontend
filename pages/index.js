@@ -4,6 +4,7 @@ import { Flex, Box, Text, Button } from "@chakra-ui/react";
 import Property from "../components/Property"
 import { baseUrl, fetchApi } from "../utils/fetchAPI";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 
 const Banner = ({ purpose, title1, title2, desc1, desc2, buttonText, linkName, imageUrl }) => (
@@ -20,13 +21,14 @@ const Banner = ({ purpose, title1, title2, desc1, desc2, buttonText, linkName, i
   </Flex>
 )
 
-function Home ({ propertiesForSale, propertiesForRent }){
-
-  useEffect(()=>{
-    if(!localStorage.getItem("token")){
-      window.location.assign("/login")
+function Home({ propertiesForSale, propertiesForRent }) {
+  // const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const router = useRouter();
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      router.push("/login")
     }
-  },[])
+  }, [])
 
   return (
     <Box>

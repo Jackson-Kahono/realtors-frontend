@@ -1,26 +1,28 @@
 import { Box, Flex, FormControl, FormLabel, Input, Text, Link, Heading, Center } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 import { useState } from "react";
 
 export default function SignUp() {
       const [isAgent, setIsAgent] = useState(false);
+      const router = useRouter();
       const handleSubmit = (e) => {
             e.preventDefault();
             const data = {
-                  fullname: e.target.name.value,
+                  name: e.target.name.value,
                   email: e.target.email.value,
                   password: e.target.password.value,
-                  confirmp: e.target.confirm.value
             }
-            if (data.password !== data.confirmp) {
+            let confirmp = e.target.confirm.value
+            if (data.password !== confirmp) {
                   alert("Password does not match")
                   e.target.confirm.value = ""
                   return
             } else {
 
-                  let url = "http://localhost:3000/api/signup/client"
+                  let url = "http://localhost:9292/clients"
                   if (isAgent) {
-                        url = "http://localhost:3000/api/signup/agency"
+                        url = "http://localhost:9292/agencies"
                   }
                   fetch(url, {
                         method: 'POST',
@@ -31,8 +33,11 @@ export default function SignUp() {
                   })
                         .then(res => res.json())
                         .then(data => {
+                              if (isAgent) {
+                                    localStorage.setItem('agent', true)
+                              }
                               localStorage.setItem('token', data.id)
-                              window.location.assign('/')
+                              router.push('/')
                         }
                         )
             }
