@@ -33,7 +33,8 @@ export default function Login(){
             .then(data=>{
                   if(data){
                         if (isAgent) {
-                              localStorage.setItem('agent', true)
+                              localStorage.setItem('agent', data.id)
+                              alert()
 
                         }
                         localStorage.setItem("token", data.id)

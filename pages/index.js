@@ -63,13 +63,17 @@ function Home({ propertiesForSale, propertiesForRent }) {
 };
 
 export async function getStaticProps() {
-  const propertyForSale = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=6`);
-  const propertyForRent = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=6`);
-
+  const propertyForSale = await fetchApi(`${baseUrl}/props/get?purpose=rent`);
+  const propertyForRent = await fetchApi(`${baseUrl}/props/get?purpose=sale`);
+  if(!propertyForSale || !propertyForRent) {
+    return {
+      notFound: true,
+    }
+  }
   return {
     props: {
-      propertiesForSale: propertyForSale?.hits,
-      propertiesForRent: propertyForRent?.hits,
+      propertiesForSale: propertyForSale,
+      propertiesForRent: propertyForRent,
     },
   };
 }
