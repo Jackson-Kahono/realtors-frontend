@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const baseUrl = "http://localhost:9292"
+export const baseUrl = "https://sheltered-brook-92533.herokuapp.com"
 
   export const fetchApi = async (url) => {
     const { data } = await axios.get((url),{
