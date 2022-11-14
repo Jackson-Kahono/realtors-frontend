@@ -45,7 +45,8 @@ const Add = () => {
                   "purpose":e.target.purpose.value,
                   "furnishing_status":e.target.status.value,
                   "amenities":e.target.amenities.value,
-                  "photos":e.target.photos.value
+                  "photos":e.target.photos.value,
+                  "owner_id":localStorage.getItem("token")
             }
             fetch("http://localhost:9292/properties", {
                   method: "POST",

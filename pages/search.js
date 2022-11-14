@@ -37,7 +37,7 @@ const Search = ({properties}) => {
         <Flex flexWrap="wrap">
             {properties.map((property) => <Property property={property} key={property.id} />)}
         </Flex>
-        {[].length === 0 && (
+        {properties.length === 0 && (
             <Flex justifyContent="center" alignItems="center" flexDirection="column" marginTop="5" marginBottom="5">
                 <Image alt="no result" src={noresult} />
                 <Text fontSize="2xl" marginTop="3">No results found</Text>
@@ -48,7 +48,7 @@ const Search = ({properties}) => {
 }
 
 export async function getServerSideProps({ query }) {
-    const purpose = query.purpose || "for-rent";
+    const purpose = query.purpose || "rent";
     const rentFrequency = query.rentFrequency || "yearly";
     const minPrice = query.minPrice || '0';
     const maxPrice = query.maxPrice || '1000000';
@@ -59,7 +59,7 @@ export async function getServerSideProps({ query }) {
     const locationExternalIDs = query.locationExternalIDs || '5002';
     const categoryExternalID = query.categoryExternalID || '4';
 
-    const data = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=${locationExternalIDs}&purpose=${purpose}&categoryExternalID=${categoryExternalID}&bathsMin=${bathsMin}&rentFrequency=${rentFrequency}&priceMin=${minPrice}&priceMax=${maxPrice}&roomsMin=${roomsMin}&sort=${sort}&areaMax=${areaMax}`);
+    const data = await fetchApi(`${baseUrl}/search?&purpose=${purpose}&baths=${bathsMin}&rent_frequency=${rentFrequency}&price_min=${minPrice}&price_max=${maxPrice}&rooms_min=${roomsMin}&sort=${sort}&area=${areaMax}`);
 
     return {
       props: {

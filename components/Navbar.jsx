@@ -45,10 +45,10 @@ const Navbar = () => {
             <Link href="/search" passHref>
               <MenuItem icon={<BsSearch />}>Search</MenuItem>
             </Link>
-            <Link href="/search?purpose=for-sale" passHref>
+            <Link href="/search?purpose=sale" passHref>
               <MenuItem icon={<FcAbout />}>Buy a Property</MenuItem>
             </Link>
-            <Link href="/search?purpose=for-rent" passHref>
+            <Link href="/search?purpose=rent" passHref>
               <MenuItem icon={<FiKey />}>Rent a Property</MenuItem>
             </Link>
             {true==true? (

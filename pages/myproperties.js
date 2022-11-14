@@ -1,23 +1,18 @@
 import { fetchApi, baseUrl } from "../utils/fetchAPI";
 import Property from "../components/Property";
 import { Flex } from "@chakra-ui/react";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 
 const Mine = () => {
       const [properties, setProperties] = useState([])
-      let id = ""
+      const [id, setId] = useState('')
       useEffect(() => {
-            id = localStorage.getItem("token")
-            if (!id) {
-                  window.location.href = "/login"
-            }
-      }, [])
-      useEffect(() => {
-            fetch(`${baseUrl}/properties/agent/${id}`)
+            fetch(`${baseUrl}/myproperties/${localStorage.getItem('token')}`)
                   .then(res => res.json())
                   .then(data => {
                         setProperties(data)
-                  })
+                  }
+                  )
       }, [])
 
 

@@ -11,7 +11,7 @@ export default function Login(){
                   email: e.target.email.value,
                   password: e.target.password.value
             }
-            let url = "http://localhost:9292/login/client"
+            let url = "http://localhost:9292/login/clients"
             if(isAgent){
                   url = "http://localhost:9292/login/agencies"
             }
@@ -27,19 +27,19 @@ export default function Login(){
                         return res.json()
                   }
                   alert("Invalid Credentials")
-                  return null
 
             })
             .then(data=>{
-                  if(data){
-                        if (isAgent) {
-                              localStorage.setItem('agent', data.id)
-                              alert()
-
-                        }
-                        localStorage.setItem("token", data.id)
-                        window.location.href = "/"
+                  if(!data.id){
+                        return
                   }
+                  console.log(data)
+                  localStorage.setItem("token", data.id)
+                  if(isAgent){
+                        localStorage.setItem("isAgent", true)
+                  }
+                  window.location.href = "/"
+
 
             })
 
