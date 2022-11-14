@@ -70,12 +70,10 @@ const PropertyDetails = ({ propertyDetails: { price, rent_frequency, rooms, titl
     <Box>
       {amenities.length && <Text fontSize='2xl' fontWeight='black' marginTop='5'>Facilites:</Text>}
       <Flex flexWrap='wrap'>
-        {amenities?.split(',').map((item) => (
-          item?.amenities?.map((amenity) => (
+        {amenities?.split(',').map((amenity) => (
             <Text key={amenity.text} fontWeight='bold' color='blue.400' fontSize='l' p='2' bg='gray.200' m='1' borderRadius='5'>
-              {amenity.text}
+              {amenity}
             </Text>
-          ))
         ))}
       </Flex>
     </Box>
